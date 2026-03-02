@@ -65,7 +65,7 @@ export function TerminalLsRow({
     return (
       <a
         href={entry.href}
-        className={`group ${ROW_CLASS} cursor-pointer rounded-md px-1.5 lg:px-2 -mx-1.5 lg:-mx-2 border border-transparent transition-none hover:bg-white/20 hover:border-white/15 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 focus:ring-offset-transparent`}
+        className={`group ${ROW_CLASS} cursor-pointer rounded-md px-1.5 lg:px-2 -mx-1.5 lg:-mx-2 border border-transparent transition-none hover:bg-white/20 hover:border-white/15 focus:outline-none`}
       >
         <LsRowMetaCells entry={entry} baseClass={metaClass} hideGroup={hideGroup} />
         <span className={`shrink-0 min-w-0 ${nameClass} group-hover:text-foreground group-hover:font-bold`}>

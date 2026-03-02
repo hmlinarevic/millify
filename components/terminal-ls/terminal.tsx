@@ -129,7 +129,7 @@ export function Terminal({
                           <Link
                             key={`${sectionIndex}-${entry.name}-${i}`}
                             href={entry.href}
-                            className={`${nameClass} hover:underline focus:outline-none focus:ring-2 focus:ring-primary/50 rounded`}
+                            className={`${nameClass} hover:underline focus:outline-none rounded`}
                           >
                             {name}
                           </Link>
