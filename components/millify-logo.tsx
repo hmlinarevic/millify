@@ -1,8 +1,15 @@
 import { SpinningWindmill } from "@/components/windmill";
 
 /** Windmill icon only — for terminal header and other compact spots */
-export function MillifyLogoIcon({ size = 1.5 }: { size?: number }) {
-  return <SpinningWindmill size={size} />;
+export function MillifyLogoIcon({
+  size = 1.5,
+  fillHeight = false,
+}: {
+  size?: number;
+  /** When true, icon fills container height (e.g. terminal header on tiny). */
+  fillHeight?: boolean;
+}) {
+  return <SpinningWindmill size={size} fillHeight={fillHeight} />;
 }
 
 export function MillifyLogo() {

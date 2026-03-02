@@ -1,16 +1,22 @@
 /** Spinning windmill icon — tower + blades, theme accent colors */
-export function SpinningWindmill({ size = 1 }: { size?: number }) {
+export function SpinningWindmill({
+  size = 1,
+  fillHeight = false,
+}: {
+  size?: number;
+  /** When true, SVG fills container height (use in a flex container with h-full). */
+  fillHeight?: boolean;
+}) {
   const s = size;
 
   return (
     <svg
-      className="block shrink-0"
-      width={20 * s}
-      height={34 * s}
+      className={fillHeight ? "block h-full w-auto shrink-0" : "block shrink-0"}
       viewBox="14 0 20 34"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden
+      {...(fillHeight ? {} : { width: 20 * s, height: 34 * s })}
     >
       <g>
         <polygon

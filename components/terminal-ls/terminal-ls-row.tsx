@@ -59,16 +59,16 @@ export function TerminalLsRow({
       : "text-primary font-medium"
     : "text-foreground";
   const displayName = lsEntryDisplayName(entry);
-  const metaClass = `${META_BASE} group-hover:text-neutral-600 group-hover:font-semibold`;
+  const metaClass = `${META_BASE} group-hover:text-neutral-400 group-hover:font-semibold`;
 
   if (entry.type === "file") {
     return (
       <a
         href={entry.href}
-        className={`group ${ROW_CLASS} cursor-pointer rounded px-1.5 lg:px-2 -mx-1.5 lg:-mx-2 transition-colors duration-0 hover:bg-white focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 focus:ring-offset-muted/40`}
+        className={`group ${ROW_CLASS} cursor-pointer rounded-md px-1.5 lg:px-2 -mx-1.5 lg:-mx-2 border border-transparent transition-none hover:bg-white/20 hover:border-white/15 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 focus:ring-offset-transparent`}
       >
         <LsRowMetaCells entry={entry} baseClass={metaClass} hideGroup={hideGroup} />
-        <span className={`shrink-0 min-w-0 ${nameClass} group-hover:text-neutral-900 group-hover:font-bold`}>
+        <span className={`shrink-0 min-w-0 ${nameClass} group-hover:text-foreground group-hover:font-bold`}>
           {displayName}
         </span>
       </a>

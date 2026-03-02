@@ -58,7 +58,10 @@ export function TerminalView({ sections }: { sections: LsSection[] }) {
   }
 
   return (
-    <div className="flex min-h-dvh w-full flex-col items-center justify-center animate-in fade-in-0 duration-200">
+    <div
+      data-suppress-outline
+      className="flex min-h-dvh w-full flex-col items-center justify-center outline-none"
+    >
       <Terminal {...terminalProps} />
     </div>
   );

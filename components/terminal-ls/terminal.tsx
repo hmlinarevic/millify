@@ -66,9 +66,9 @@ export function Terminal({
       : [];
 
   return (
-    <div className="w-full max-w-[900px] min-[480px]:w-max min-[480px]:max-w-[900px] overflow-hidden rounded-lg border border-border bg-muted/40 shadow-md">
+    <div className="terminal-shell w-full max-w-[900px] min-[480px]:w-max min-[480px]:max-w-[900px] overflow-hidden rounded-xl border-0 outline-none">
       {/* Terminal header – flex: left = 3 buttons (+ title on larger), right = logo; justify-between, width follows screen */}
-      <div className={`flex w-full min-h-7 lg:min-h-8 flex-row items-center justify-between border-b border-border bg-muted/60 py-0 ${hideHeaderLogo ? "px-2" : "px-4 lg:px-6"}`}>
+      <div className={`terminal-shell-header flex w-full min-h-7 lg:min-h-8 flex-row items-center justify-between py-0 ${hideHeaderLogo ? "px-2" : "px-4 lg:px-6"}`}>
         <div className="flex min-w-0 flex-1 items-center gap-1.5 lg:gap-2">
           <span className="size-2 lg:size-2.5 shrink-0 rounded-full bg-red-500/80" aria-hidden />
           <span className="size-2 lg:size-2.5 shrink-0 rounded-full bg-amber-500/80" aria-hidden />
@@ -77,10 +77,16 @@ export function Terminal({
             <span className="ml-1.5 lg:ml-2 min-w-0 truncate font-mono text-[11px] lg:text-xs text-muted-foreground">{title}</span>
           )}
         </div>
-        <div className={`flex shrink-0 items-center relative top-[-2px] ${hideHeaderLogo ? "w-[26px] min-[340px]:w-[30px] min-[380px]:w-[34px] min-[420px]:w-[38px] justify-start overflow-hidden" : "justify-end"}`}>
-          <div className={`${hideHeaderLogo ? "origin-left scale-[0.28] min-[340px]:scale-[0.32] min-[380px]:scale-[0.36] min-[420px]:scale-[0.4]" : "origin-right scale-[0.5] lg:scale-[0.58]"}`}>
-            <MillifyLogoIcon />
-          </div>
+        <div className={`flex shrink-0 items-center relative top-[-2px] ${hideHeaderLogo ? "min-w-[28px] min-[360px]:min-w-[32px] min-[400px]:min-w-[36px] justify-start" : "justify-end"}`}>
+          {hideHeaderLogo ? (
+            <div className="origin-left scale-[0.45] min-[360px]:scale-[0.5] min-[400px]:scale-[0.55]">
+              <MillifyLogoIcon />
+            </div>
+          ) : (
+            <div className="origin-right scale-[0.5] lg:scale-[0.58]">
+              <MillifyLogoIcon />
+            </div>
+          )}
         </div>
       </div>
 
