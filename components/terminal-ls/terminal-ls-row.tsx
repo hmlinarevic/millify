@@ -68,7 +68,7 @@ export function TerminalLsRow({
         className={`group ${ROW_CLASS} cursor-pointer rounded-md px-1.5 lg:px-2 -mx-1.5 lg:-mx-2 border border-transparent transition-none hover:bg-white/20 hover:border-white/15 focus:outline-none`}
       >
         <LsRowMetaCells entry={entry} baseClass={metaClass} hideGroup={hideGroup} />
-        <span className={`shrink-0 min-w-0 ${nameClass} group-hover:text-foreground group-hover:font-bold`}>
+        <span className={`shrink-0 min-w-0 underline underline-offset-2 ${nameClass} group-hover:text-foreground group-hover:font-bold`}>
           {displayName}
         </span>
       </a>

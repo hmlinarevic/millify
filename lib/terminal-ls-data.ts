@@ -2,7 +2,7 @@ import type { TreeNode } from "@/components/directory-tree";
 
 export type LsEntry =
   | { type: "dir"; name: string }
-  | { type: "file"; name: string; href: string; /** Style as directory (color + trailing /) */ displayAsDir?: boolean };
+  | { type: "file"; name: string; href: string; /** Style as directory (color + trailing /) */ displayAsDir?: boolean; /** Omit trailing / in display (e.g. projects output) */ noTrailingSlash?: boolean };
 
 export type LsSection = {
   cdCommand: string;
@@ -39,7 +39,7 @@ export function treeNodesToLsSections(
       const entries: LsEntry[] = [];
       for (const child of node.children) {
         if (child.type === "app" && child.href) {
-          entries.push({ type: "file", name: child.name, href: child.href, displayAsDir: true });
+          entries.push({ type: "file", name: child.name, href: child.href, displayAsDir: true, noTrailingSlash: true });
         }
       }
       sections.push({ cdCommand: "cd ../projects", pwd: "~/projects", entries });
@@ -50,8 +50,9 @@ export function treeNodesToLsSections(
   return sections;
 }
 
-/** Display name for an entry (dir or displayAsDir gets trailing /). */
+/** Display name for an entry (dir or displayAsDir gets trailing / unless noTrailingSlash). */
 export function lsEntryDisplayName(entry: LsEntry): string {
+  if (entry.type === "file" && entry.noTrailingSlash) return entry.name;
   if (entry.type === "dir" || (entry.type === "file" && entry.displayAsDir)) {
     return `${entry.name}/`;
   }
