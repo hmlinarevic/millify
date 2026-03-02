@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { Terminal } from "@/components/terminal-ls";
-import { MillifyLogo } from "@/components/millify-logo";
 import type { LsSection } from "@/lib/terminal-ls-data";
 
 /** Very small: logo above terminal, simple ls -R. Small/medium: ls -o. Large: ls -lh with group. */
@@ -58,23 +57,8 @@ export function TerminalView({ sections }: { sections: LsSection[] }) {
     );
   }
 
-  if (showLogoOutside) {
-    return (
-      <div className="grid min-h-dvh w-full grid-rows-[auto_1fr] content-start animate-in fade-in-0 duration-200">
-        <div className="flex justify-center pt-8">
-          <div className="scale-[0.5] origin-center">
-            <MillifyLogo />
-          </div>
-        </div>
-        <div className="grid place-content-center place-items-center min-h-0 -mt-14">
-          <Terminal {...terminalProps} />
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <div className="animate-in fade-in-0 duration-200">
+    <div className="flex min-h-dvh w-full flex-col items-center justify-center animate-in fade-in-0 duration-200">
       <Terminal {...terminalProps} />
     </div>
   );

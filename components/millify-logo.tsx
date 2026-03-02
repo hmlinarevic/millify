@@ -1,5 +1,10 @@
 import { SpinningWindmill } from "@/components/windmill";
 
+/** Windmill icon only — for terminal header and other compact spots */
+export function MillifyLogoIcon({ size = 1.5 }: { size?: number }) {
+  return <SpinningWindmill size={size} />;
+}
+
 export function MillifyLogo() {
   return (
     <div className="flex items-baseline gap-0.5">

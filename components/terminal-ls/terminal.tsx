@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { MillifyLogo } from "@/components/millify-logo";
+import { MillifyLogoIcon } from "@/components/millify-logo";
 import { TerminalLsRow } from "./terminal-ls-row";
 import {
   type LsEntry,
@@ -21,7 +21,7 @@ export interface TerminalProps {
   title?: string;
   /** When true, show plain `ls` output (names only, flex wrap) for small screens. */
   compact?: boolean;
-  /** When true, hide the logo in the terminal header (e.g. when shown outside on very small screens). */
+  /** When true, use compact header on tiny: no title text, logo in header instead (replaces "ssh root@..."). */
   hideHeaderLogo?: boolean;
   /** When true, show ls -o style (omit group column) for medium screens. */
   hideGroup?: boolean;
@@ -66,25 +66,27 @@ export function Terminal({
       : [];
 
   return (
-    <div className="w-full max-w-[900px] overflow-hidden rounded-lg border border-border bg-muted/40 shadow-md">
-      {/* Terminal header – smaller on tiny/small/medium; normal on large */}
-      <div className="flex min-h-7 lg:min-h-8 items-center justify-between gap-1.5 lg:gap-2 border-b border-border bg-muted/60 px-4 lg:px-6 py-0">
-        <div className="flex min-w-0 items-center gap-1.5 lg:gap-2">
-          <span className="size-2 lg:size-2.5 rounded-full bg-red-500/80 shrink-0" aria-hidden />
-          <span className="size-2 lg:size-2.5 rounded-full bg-amber-500/80 shrink-0" aria-hidden />
-          <span className="size-2 lg:size-2.5 rounded-full bg-emerald-500/80 shrink-0" aria-hidden />
-          <span className="ml-1.5 lg:ml-2 font-mono text-[11px] lg:text-xs text-muted-foreground truncate">{title}</span>
+    <div className="w-full max-w-[900px] min-[480px]:w-max min-[480px]:max-w-[900px] overflow-hidden rounded-lg border border-border bg-muted/40 shadow-md">
+      {/* Terminal header – flex: left = 3 buttons (+ title on larger), right = logo; justify-between, width follows screen */}
+      <div className={`flex w-full min-h-7 lg:min-h-8 flex-row items-center justify-between border-b border-border bg-muted/60 py-0 ${hideHeaderLogo ? "px-2" : "px-4 lg:px-6"}`}>
+        <div className="flex min-w-0 flex-1 items-center gap-1.5 lg:gap-2">
+          <span className="size-2 lg:size-2.5 shrink-0 rounded-full bg-red-500/80" aria-hidden />
+          <span className="size-2 lg:size-2.5 shrink-0 rounded-full bg-amber-500/80" aria-hidden />
+          <span className="size-2 lg:size-2.5 shrink-0 rounded-full bg-emerald-500/80" aria-hidden />
+          {!hideHeaderLogo && (
+            <span className="ml-1.5 lg:ml-2 min-w-0 truncate font-mono text-[11px] lg:text-xs text-muted-foreground">{title}</span>
+          )}
         </div>
-        <div
-          className={`shrink-0 scale-[0.5] lg:scale-[0.58] origin-right relative top-[-2px] ${hideHeaderLogo ? "hidden" : "block"}`}
-        >
-          <MillifyLogo />
+        <div className={`flex shrink-0 items-center relative top-[-2px] ${hideHeaderLogo ? "w-[26px] min-[340px]:w-[30px] min-[380px]:w-[34px] min-[420px]:w-[38px] justify-start overflow-hidden" : "justify-end"}`}>
+          <div className={`${hideHeaderLogo ? "origin-left scale-[0.28] min-[340px]:scale-[0.32] min-[380px]:scale-[0.36] min-[420px]:scale-[0.4]" : "origin-right scale-[0.5] lg:scale-[0.58]"}`}>
+            <MillifyLogoIcon />
+          </div>
         </div>
       </div>
 
       {/* Terminal body – smaller on tiny/small/medium; normal on large */}
       <div className="overflow-x-auto py-3 lg:py-4 font-mono text-xs lg:text-sm">
-        <div className={`px-4 lg:px-6 ${compact ? "" : "min-w-max"}`}>
+        <div className={`px-4 lg:px-6 ${compact ? "" : "min-w-max min-[480px]:w-max"}`}>
         {sections.map((section, sectionIndex) => {
           const showPrompt = section.cdCommand.length > 0;
           return (

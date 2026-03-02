@@ -4,6 +4,8 @@ import { ViewTransitions } from "next-view-transitions";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import "./globals.css";
 
+const isProd = process.env.NODE_ENV === "production";
+
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta",
   subsets: ["latin"],
@@ -32,7 +34,7 @@ export const metadata: Metadata = {
   description:
     "JavaScript developer building frontend interfaces with React.js and backend solutions with NestJS. Based in Zagreb, Croatia.",
   icons: {
-    icon: "/favicon.ico",
+    icon: isProd ? "/favicon.ico" : "/favicon-dev.ico",
   },
 };
 
