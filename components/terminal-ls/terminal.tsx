@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { MillifyLogoIcon } from "@/components/millify-logo";
 import { TerminalLsRow } from "./terminal-ls-row";
 import {
@@ -126,13 +125,13 @@ export function Terminal({
                       const name = lsEntryDisplayName(entry);
                       if (entry.type === "file") {
                         return (
-                          <Link
+                          <a
                             key={`${sectionIndex}-${entry.name}-${i}`}
                             href={entry.href}
                             className={`${nameClass} ${spacingClass} underline underline-offset-2 focus:outline-none rounded`}
                           >
                             {name}
-                          </Link>
+                          </a>
                         );
                       }
                       return (
