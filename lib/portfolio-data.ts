@@ -3,6 +3,7 @@ export const profile = {
   title: "Full-Stack Developer",
   location: "Zagreb, Croatia",
   email: "hrvoje@millify.dev",
+  github: "https://github.com/millify",
   tagline:
     "Building web applications from frontend interfaces to backend systems.",
   bio: "I like building things that matter — from backend systems and servers to interfaces that people actually enjoy using. My goal is to help make the web a bit more approachable for everyone.",

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Link } from "next-view-transitions";
 import Image from "next/image";
-import { Mail } from "lucide-react";
+import { Github, Mail } from "lucide-react";
 import {
   profile,
   experience,
@@ -87,6 +87,15 @@ export default function PortfolioPage() {
             >
               <Mail className="size-4" aria-hidden />
               Get In Touch
+            </a>
+            <a
+              href={profile.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-coral inline-flex items-center justify-center gap-2 text-sm font-medium transition-colors self-start"
+            >
+              <Github className="size-4" aria-hidden />
+              GitHub
             </a>
           </div>
         </header>
