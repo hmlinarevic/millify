@@ -26,11 +26,11 @@ export function getPagesTreeNodes(): TreeNode[] {
 }
 
 /**
- * Projects tree for the root page: projects folder with sessions & crosswit.
+ * Projects tree for the root page: projects folder with booknooq & crosswit.
  * Uses same URLs as /me project cards; app entries use Next.js icon.
  */
 export function getProjectsTreeNodes(): TreeNode[] {
-  const sessionsProject = projects.find((p) => p.name === "Sessions");
+  const booknooqProject = projects.find((p) => p.name === "booknooq");
   const crosswitProject = projects.find((p) => p.name === "Crosswit");
 
   const projectApps: TreeNode[] = [];
@@ -43,12 +43,12 @@ export function getProjectsTreeNodes(): TreeNode[] {
       icon: nextjsIconUrl,
     });
   }
-  if (sessionsProject?.url) {
+  if (booknooqProject?.url) {
     projectApps.push({
-      id: "sessions",
-      name: "sessions",
+      id: "booknooq",
+      name: "booknooq",
       type: "app",
-      href: sessionsProject.url,
+      href: booknooqProject.url,
       icon: nextjsIconUrl,
     });
   }

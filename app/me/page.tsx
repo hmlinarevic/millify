@@ -17,7 +17,6 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { StarTrekPopup } from "./star-trek-popup";
-import { SessionLogo } from "@/components/session-logo";
 import { CrosswitLogo } from "@/components/crosswit-logo";
 
 export const metadata: Metadata = {
@@ -144,19 +143,27 @@ export default function PortfolioPage() {
           <Section id="projects" title="Projects">
             <ul className={TWO_COL_GRID}>
               {projects.map((project) => {
+                const isExternal = Boolean(project.url?.startsWith("http"));
                 const cardContent = (
                   <CardHeader className="flex flex-row items-center justify-center gap-3 px-4 py-4 sm:px-6">
-                    {project.name === "Sessions" ? (
-                      <div className="shrink-0 text-foreground">
-                        <SessionLogo />
-                      </div>
+                    {project.name === "booknooq" ? (
+                      <span className="select-none text-xl font-mono font-medium text-foreground">
+                        booknooq
+                      </span>
                     ) : project.name === "Crosswit" ? (
                       <CrosswitLogo className="text-foreground" />
                     ) : null}
                   </CardHeader>
                 );
                 return (
-                  <a key={project.name} href={project.url || ""} className="project-card-link min-w-0 block">
+                  <a
+                    key={project.name}
+                    href={project.url || ""}
+                    {...(isExternal
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
+                    className="project-card-link min-w-0 block"
+                  >
                     <Card
                       className="h-full w-full min-w-0 border-border bg-card/50 text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm transition-colors hover:border-foreground/40 hover:bg-foreground/10 cursor-pointer"
                     >

@@ -61,9 +61,9 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    name: "Sessions",
-    description: "Portfolio project",
-    url: "/projects/sessions",
+    name: "booknooq",
+    description: "Clinic booking platform",
+    url: "https://booknooq.io/",
   },
   {
     name: "Crosswit",
